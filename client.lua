@@ -12,8 +12,17 @@ Citizen.CreateThread(function()
     PlayerData = ESX.GetPlayerData()
 end)
 
+function PlayTabletEmote()
+    ExecuteCommand("e tablet2")
+end
+
+function StopTabletEmote()
+    ExecuteCommand("emotecancel")
+end
+
 RegisterCommand(Config.politicommand, function()
     if PlayerData.job and PlayerData.job.name == Config.politijob then
+        PlayTabletEmote()
         SendNUIMessage({ action = "show", url = "http://localhost/police/pages/login.php" })
         SetNuiFocus(true, true)
         nuiOpen = true
@@ -32,6 +41,7 @@ end)
 
 RegisterCommand(Config.lagecommand, function()
     if PlayerData.job and PlayerData.job.name == Config.laegejob then
+        PlayTabletEmote()
         SendNUIMessage({ action = "show", url = "http://localhost/ems/pages/login.php" })
         SetNuiFocus(true, true)
         nuiOpen = true
@@ -52,6 +62,7 @@ RegisterNUICallback('close', function()
     SetNuiFocus(false, false)
     SendNUIMessage({ action = "hide" })
     nuiOpen = false
+    StopTabletEmote()
 end)
 
 RegisterNetEvent('esx:playerLoaded', function(xPlayer)
