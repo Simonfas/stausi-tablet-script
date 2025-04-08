@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tablet</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #tablet {
+      width: 70vw;
+      height: 80vh;
+      background-color: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 30px rgba(0,0,0,0.7);
+      display: none;
+      position: relative;
+      flex-direction: column;
+    }
+
+    #topbar {
+        background-color: #2d72ff;
+        color: white;
+        padding: 12px 20px;
+        font-size: 18px;
+        font-family: sans-serif;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+
+    #close-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    iframe {
+      flex-grow: 1;
+      width: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="tablet">
+    <div id="topbar">
+      <button id="close-btn">Luk ❌</button>
+    </div>
+    <iframe></iframe>
+  </div>
+
+  <script>
+    const tablet = document.getElementById('tablet');
+    const closeBtn = document.getElementById('close-btn');
+    const iframe = document.querySelector('iframe');
+    let currentTabletType = null;
+    window.addEventListener('message', function(event) {
+      if (event.data.action === 'show') {
+        if (event.data.url) {
+          iframe.src = event.data.url;
+          if (event.data.url.includes('/police/')) {
+            currentTabletType = 'police';
+          } else if (event.data.url.includes('/ems/')) {
+            currentTabletType = 'ems';
+          }
+        }
+        tablet.style.display = 'flex';
+      } else if (event.data.action === 'hide') {
+        tablet.style.display = 'none';
+        iframe.src = "about:blank";
+        currentTabletType = null;
+      }
+    });
+  
+    closeBtn.addEventListener('click', () => {
+      fetch(`https://${GetParentResourceName()}/close`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({})
+      });
+    });
+
+    iframe.onload = function () {
+      try {
+      const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+      const links = iframeDoc.querySelectorAll('a');
+      links.forEach(link => {
+        if (link.textContent.includes('Tilbage til start')) {
+          link.style.display = 'none';
+        }
+      });
+      } catch (e) {
+      }
+    };
+
+    setInterval(() => {
+      try {
+      const path = iframe.contentWindow.location.pathname;
+
+      if (path.endsWith("index.html")) {
+        if (currentTabletType === 'police') {
+          iframe.contentWindow.location.href = "http://localhost/police/pages/login.php";
+        } else if (currentTabletType === 'ems') {
+          iframe.contentWindow.location.href = "http://localhost/ems/pages/login.php";
+        }
+      }
+    } catch (e) {
+    }
+  }, 500);
+  </script>
+</body>
+</html>
