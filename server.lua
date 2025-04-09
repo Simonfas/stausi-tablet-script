@@ -4,9 +4,9 @@ if Config.framework == "VRP" then
     
     vRP = Proxy.getInterface("vRP")
     
-    vRP.registerMenuBuilder({"police", function(add, data)
+    vRP.registerMenuBuilder({Config.politimenu, function(add, data)
         local user_id = vRP.getUserId({data.player})
-        if user_id ~= nil and vRP.hasPermission({user_id, "police.menu_interaction"}) then
+        if user_id ~= nil and vRP.hasPermission({user_id, Config.politipermission}) then
             local submenu = {}
     
             submenu["Åben Tablet"] = {
@@ -20,9 +20,9 @@ if Config.framework == "VRP" then
         end
     end}) 
 
-    vRP.registerMenuBuilder({"ems", function(add, data)
+    vRP.registerMenuBuilder({Config.laegemenu, function(add, data)
         local user_id = vRP.getUserId({data.player})
-        if user_id ~= nil and vRP.hasPermission({user_id, "emergency.menu"}) then
+        if user_id ~= nil and vRP.hasPermission({user_id, Config.laegepermission}) then
             local submenu = {}
     
             submenu["Åben Tablet"] = {
