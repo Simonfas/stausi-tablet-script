@@ -11,11 +11,6 @@ Citizen.CreateThread(function()
             Citizen.Wait(10)
         end
         PlayerData = ESX.GetPlayerData()
-    elseif Config.framework == "VRP" then
-        local Tunnel = module("vrp", "lib/Tunnel")
-        local Proxy = module("vrp", "lib/Proxy")
-    
-        vRP = Proxy.getInterface("vRP")
     end
 end)
 
@@ -46,7 +41,12 @@ RegisterCommand(Config.politicommand, function()
             if Config.framework == "ESX" then
                 ESX.ShowNotification('~r~Du har ikke adgang til dette.')
             elseif Config.framework == "VRP" then
-                vRP.notify({"~r~Du har ikke adgang til dette."})
+                TriggerEvent("pNotify:SendNotification", {
+                    text = "Du har ikke adgang til dette.",
+                    type = "error",
+                    timeout = 3000,
+                    layout = "centerLeft"
+                })
             end
         end
     end
@@ -69,7 +69,12 @@ RegisterCommand(Config.lagecommand, function()
             if Config.framework == "ESX" then
                 ESX.ShowNotification('~r~Du har ikke adgang til dette.')
             elseif Config.framework == "VRP" then
-                vRP.notify({"~r~Du har ikke adgang til dette."})
+                TriggerEvent("pNotify:SendNotification", {
+                    text = "Du har ikke adgang til dette.",
+                    type = "error",
+                    timeout = 3000,
+                    layout = "centerLeft"
+                })
             end
         end
     end
