@@ -11,6 +11,12 @@ Citizen.CreateThread(function()
             Citizen.Wait(10)
         end
         PlayerData = ESX.GetPlayerData()
+    elseif Config.framework == "QBCORE" then
+        QBCore = exports['qb-core']:GetCoreObject()
+        while not QBCore.Functions.GetPlayerData().job do
+            Citizen.Wait(100)
+        end
+        PlayerData = QBCore.Functions.GetPlayerData()
     end
 end)
 
@@ -22,12 +28,20 @@ if Config.framework == "ESX" then
     function StopTabletEmote()
         ExecuteCommand("emotecancel")
     end
+elseif Config.framework == "QBCORE" then
+    function PlayTabletEmote()
+        TriggerEvent("animations:client:EmoteCommandStart", {"tablet2"})
+    end
+    
+    function StopTabletEmote()
+        TriggerEvent("animations:client:EmoteCommandStart", {"c"})
+    end
 end
 
 RegisterCommand(Config.politicommand, function()
     if PlayerData.job and PlayerData.job.name == Config.politijob then
         PlayTabletEmote()
-        SendNUIMessage({ action = "show", url = "http://localhost/police/pages/login.php" })
+        SendNUIMessage({ action = "show", url = Config.politiurl })
         SetNuiFocus(true, true)
         nuiOpen = true
     else
@@ -47,7 +61,9 @@ RegisterCommand(Config.politicommand, function()
                     timeout = 3000,
                     layout = "centerLeft"
                 })
-            end
+            elseif Config.framework == "QBCORE" then
+                QBCore.Functions.Notify("Du har ikke adgang til dette.", "error")
+            end 
         end
     end
 end)
@@ -55,7 +71,7 @@ end)
 RegisterCommand(Config.lagecommand, function()
     if PlayerData.job and PlayerData.job.name == Config.laegejob then
         PlayTabletEmote()
-        SendNUIMessage({ action = "show", url = "http://localhost/ems/pages/login.php" })
+        SendNUIMessage({ action = "show", url = Config.laegeurl })
         SetNuiFocus(true, true)
         nuiOpen = true
     else
@@ -75,7 +91,9 @@ RegisterCommand(Config.lagecommand, function()
                     timeout = 3000,
                     layout = "centerLeft"
                 })
-            end
+            elseif Config.framework == "QBCORE" then
+                QBCore.Functions.Notify("Du har ikke adgang til dette.", "error")
+            end            
         end
     end
 end)
@@ -97,17 +115,25 @@ RegisterNetEvent('esx:setJob', function(job)
     PlayerData.job = job
 end)
 
+RegisterNetEvent('QBCore:Client:OnJobUpdate', function(job)
+    PlayerData.job = job
+end)
+
+RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
+    PlayerData = QBCore.Functions.GetPlayerData()
+end)
+
 if Config.framework == "VRP" then
     RegisterNetEvent("tablet:open")
     AddEventHandler("tablet:open", function()
-        SendNUIMessage({ action = "show", url = "http://localhost/police/pages/login.php" })
+        SendNUIMessage({ action = "show", url = Config.politiurl })
         SetNuiFocus(true, true)
         nuiOpen = true
     end)
 
     RegisterNetEvent("tablet:emsopen")
     AddEventHandler("tablet:emsopen", function()
-        SendNUIMessage({ action = "show", url = "http://localhost/ems/pages/login.php" })
+        SendNUIMessage({ action = "show", url = Config.laegeurl })
         SetNuiFocus(true, true)
         nuiOpen = true
     end)
