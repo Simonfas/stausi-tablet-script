@@ -1,8 +1,8 @@
 fx_version 'cerulean'
 games {'gta5'}
 author 'Simonfas'
-description 'Stausi Tablet Script ESX'
-version '1.2'
+description 'Stausi Tablet Script'
+version '1.4'
 lua54 'yes'
 dependency "vrp"
 
