@@ -38,7 +38,11 @@ RegisterCommand(Config.politicommand, function()
                 type = 'error'
             })
         else
-            ESX.ShowNotification('~r~Du har ikke adgang til dette.')
+            if Config.framework == "ESX" then
+                ESX.ShowNotification('~r~Du har ikke adgang til dette.')
+            elseif Config.framework == "VRP" then
+                vRP.notify({"~r~Du har ikke adgang til dette."})
+            end
         end
     end
 end)
@@ -57,7 +61,11 @@ RegisterCommand(Config.lagecommand, function()
                 type = 'error'
             })
         else
-            ESX.ShowNotification('~r~Du har ikke adgang til dette.')
+            if Config.framework == "ESX" then
+                ESX.ShowNotification('~r~Du har ikke adgang til dette.')
+            elseif Config.framework == "VRP" then
+                vRP.notify({"~r~Du har ikke adgang til dette."})
+            end
         end
     end
 end)
