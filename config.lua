@@ -9,8 +9,8 @@ Config.politiurl = "http://localhost/police/pages/login.php" -- Politilogin URL
 Config.laegeurl = "http://localhost/ems/pages/login.php" -- Lægelogin URL
 
 -- Kun til VRP --
-Config.politimenu = "police" -- Jobnavn
-Config.laegemenu = "ems" -- Jobnavn
+Config.politimenu = "police" -- Menunavn
+Config.laegemenu = "ems" -- Menunavn
 
 Config.politipermission = "police.menu_interaction" -- Jobnavn
 Config.laegepermission = "emergency.menu" -- Jobnavn
