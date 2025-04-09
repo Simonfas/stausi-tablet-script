@@ -11,6 +11,11 @@ Citizen.CreateThread(function()
             Citizen.Wait(10)
         end
         PlayerData = ESX.GetPlayerData()
+    elseif Config.framework == "VRP" then
+        local Tunnel = module("vrp", "lib/Tunnel")
+        local Proxy = module("vrp", "lib/Proxy")
+    
+        vRP = Proxy.getInterface("vRP")
     end
 end)
 
