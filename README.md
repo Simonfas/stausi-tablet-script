@@ -2,4 +2,6 @@
 
 Guide: https://guides.simonfas.dk/random/danske-guides/stausi-tablet
 
-![image](https://github.com/user-attachments/assets/499a2924-b083-4e3c-b3d4-494094b5c268)
+![image](https://github.com/user-attachments/assets/041fec5e-e112-452e-8706-5fd7e2666508)
+
+![image](https://github.com/user-attachments/assets/f300ab76-2279-4b53-b17e-760a14c67d34)
