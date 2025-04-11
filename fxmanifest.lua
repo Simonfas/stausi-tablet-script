@@ -2,14 +2,16 @@ fx_version 'cerulean'
 games {'gta5'}
 author 'Simonfas'
 description 'Stausi Tablet Script'
-version '1.4'
+version '2.0'
 lua54 'yes'
 dependency "vrp"
 
 ui_page 'html/index.html'
 
 files {
-    'html/index.html'
+    'html/index.html',
+    'html/style.css',
+    'html/bootstrap.min.css'
 }
 
 client_scripts {
@@ -20,7 +22,7 @@ client_scripts {
 
 shared_scripts {
     'config.lua',
-    --'@ox_lib/init.lua',
+    '@ox_lib/init.lua',
     '@vrp/lib/utils.lua',
 }
 
