@@ -44,6 +44,7 @@ RegisterCommand(Config.politicommand, function()
         SendNUIMessage({ action = "show", url = Config.politiurl })
         SetNuiFocus(true, true)
         nuiOpen = true
+        SendNUIMessage({ action = "updateLogos", logoUrl = Config.politilogo, selector = "img[src*='logo_stort.png']"})
     else
         if Config.oxnotify then
             lib.notify({
@@ -74,6 +75,7 @@ RegisterCommand(Config.lagecommand, function()
         SendNUIMessage({ action = "show", url = Config.laegeurl })
         SetNuiFocus(true, true)
         nuiOpen = true
+        SendNUIMessage({ action = "updateLogos", logoUrl = Config.laegelogo, selector = "img[src*='logo_stort.png']"})
     else
         if Config.oxnotify == true then
             lib.notify({
