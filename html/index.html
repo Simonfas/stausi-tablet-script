@@ -24,24 +24,51 @@
     const closeBtn = document.getElementById('close-btn');
     const iframe = document.querySelector('iframe');
     let currentTabletType = null;
+    let lastLogos = null;
 
     window.addEventListener('message', function(event) {
       if (event.data.action === 'show') {
         if (event.data.url) {
           iframe.src = event.data.url;
+
           if (event.data.url.includes('/police/')) {
             currentTabletType = 'police';
           } else if (event.data.url.includes('/ems/')) {
             currentTabletType = 'ems';
           }
         }
+
         tablet.style.display = 'flex';
-      } else if (event.data.action === 'hide') {
+      }
+
+      else if (event.data.action === 'hide') {
         tablet.style.display = 'none';
         iframe.src = "about:blank";
         currentTabletType = null;
       }
+
+      else if (event.data.action === 'updateLogos') {
+        lastLogos = {
+          logoUrl: event.data.logoUrl,
+          selector: event.data.selector
+        };
+        tryUpdateLogo();
+      }
     });
+
+    function tryUpdateLogo() {
+      if (!lastLogos) return;
+
+      try {
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        const logo = iframeDoc.querySelector(lastLogos.selector);
+        if (logo) {
+          logo.src = lastLogos.logoUrl;
+        }
+      } catch (e) {
+        console.warn("Kunne ikke opdatere logo:", e);
+      }
+    }
 
     closeBtn.addEventListener('click', () => {
       fetch(`https://${GetParentResourceName()}/close`, {
@@ -62,6 +89,15 @@
             link.style.display = 'none';
           }
         });
+
+        const footer = iframeDoc.querySelector('.front-page-footer');
+        if (footer && !iframeDoc.getElementById('tablet-credit-extra')) {
+          const line3 = iframeDoc.createElement('h1');
+          line3.id = 'tablet-credit-extra';
+          line3.textContent = "Script Made By Simonfas";
+          footer.appendChild(line3);
+        }
+        tryUpdateLogo();
       } catch (e) {}
     };
 
