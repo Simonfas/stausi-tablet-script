@@ -3,10 +3,13 @@ Config = {}
 Config.framework = "VRP" -- Skift mellem "VRP" eller "ESX" eller "QBCORE"
 
 -- Fjern de 2 streger foran '@ox_lib/init.lua' i fxmanifest.lua, hvis du bruger ox_lib --
-Config.oxnotify = false -- Hvis du bruger ox_lib, så sæt denne til true. Ellers lad den være false.
+Config.oxnotify = true -- Hvis du bruger ox_lib, så sæt denne til true. Ellers lad den være false.
 
 Config.politiurl = "http://localhost/police/pages/login.php" -- Politilogin URL
 Config.laegeurl = "http://localhost/ems/pages/login.php" -- Lægelogin URL
+
+Config.politilogo = "https://r2.fivemanage.com/LnnGKczEFgpRxvxjLg5xS/dansk-politi.png" -- Politilogo URL
+Config.laegelogo = "https://r2.fivemanage.com/LnnGKczEFgpRxvxjLg5xS/image_2025-04-10_000605678.png" -- Lægelogo URL
 
 -- Kun til VRP --
 Config.politimenu = "police" -- Menunavn
