@@ -2,9 +2,8 @@ fx_version 'cerulean'
 games {'gta5'}
 author 'Simonfas'
 description 'Stausi Tablet Script'
-version '2.1'
+version '2.2'
 lua54 'yes'
-dependency "vrp"
 
 ui_page 'html/index.html'
 
@@ -15,6 +14,7 @@ files {
 }
 
 client_scripts {
+    'custom.lua',
     'lib/Proxy.lua',
     'lib/Tunnel.lua',
     'client.lua'
