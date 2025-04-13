@@ -1,9 +1,9 @@
 Config = {}
--- Sæt 2 streger foran dependency "vrp" og '@vrp/lib/utils.lua' i fxmanifest.lua, hvis du bruger ESX eller QBCORE --
-Config.framework = "VRP" -- Skift mellem "VRP" eller "ESX" eller "QBCORE"
+
+Config.framework = "VRP" -- Skift mellem ["VRP" eller "ESX" eller "QBCORE"]
 
 -- Sæt de 2 streger foran '@ox_lib/init.lua' i fxmanifest.lua, hvis du IKKE bruger ox_lib --
-Config.oxnotify = true -- Hvis du IKKE bruger ox_lib, så sæt denne til false. Ellers lad den være true.
+Config.notify = "OX" -- ["OX", "VRP", "ESX", "QBCORE", "CUSTOM"] 
 
 Config.politiurl = "http://localhost/police/pages/login.php" -- Politilogin URL
 Config.laegeurl = "http://localhost/ems/pages/login.php" -- Lægelogin URL
