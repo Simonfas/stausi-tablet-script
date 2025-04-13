@@ -1,4 +1,5 @@
 local nuiOpen = false
+local Custom = require('custom')
 
 Citizen.CreateThread(function()
     if Config.framework == "ESX" then
@@ -46,25 +47,25 @@ RegisterCommand(Config.politicommand, function()
         nuiOpen = true
         SendNUIMessage({ action = "updateLogos", logoUrl = Config.politilogo, selector = "img[src*='logo_stort.png']"})
     else
-        if Config.oxnotify then
+        if Config.notify == "OX" then
             lib.notify({
                 title = 'Adgang nægtet',
                 description = 'Du har ikke adgang til dette.',
                 type = 'error'
             })
-        else
-            if Config.framework == "ESX" then
-                ESX.ShowNotification('~r~Du har ikke adgang til dette.')
-            elseif Config.framework == "VRP" then
-                TriggerEvent("pNotify:SendNotification", {
-                    text = "Du har ikke adgang til dette.",
-                    type = "error",
-                    timeout = 3000,
-                    layout = "centerLeft"
-                })
-            elseif Config.framework == "QBCORE" then
-                QBCore.Functions.Notify("Du har ikke adgang til dette.", "error")
-            end 
+        elseif Config.notify == "ESX" then
+            ESX.ShowNotification('~r~Du har ikke adgang til dette.')
+        elseif Config.notify == "VRP" then
+            TriggerEvent("pNotify:SendNotification", {
+                text = "Du har ikke adgang til dette.",
+                type = "error",
+                timeout = 3000,
+                layout = "centerLeft"
+            })
+        elseif Config.notify == "QBCORE" then
+            QBCore.Functions.Notify("Du har ikke adgang til dette.", "error")
+        elseif Config.notify == "CUSTOM" then
+            Custom.noacces()            
         end
     end
 end)
@@ -77,25 +78,25 @@ RegisterCommand(Config.lagecommand, function()
         nuiOpen = true
         SendNUIMessage({ action = "updateLogos", logoUrl = Config.laegelogo, selector = "img[src*='logo_stort.png']"})
     else
-        if Config.oxnotify == true then
+        if Config.notify == "OX" then
             lib.notify({
                 title = 'Adgang nægtet',
                 description = 'Du har ikke adgang til dette.',
                 type = 'error'
             })
-        else
-            if Config.framework == "ESX" then
-                ESX.ShowNotification('~r~Du har ikke adgang til dette.')
-            elseif Config.framework == "VRP" then
-                TriggerEvent("pNotify:SendNotification", {
-                    text = "Du har ikke adgang til dette.",
-                    type = "error",
-                    timeout = 3000,
-                    layout = "centerLeft"
-                })
-            elseif Config.framework == "QBCORE" then
-                QBCore.Functions.Notify("Du har ikke adgang til dette.", "error")
-            end            
+        elseif Config.notify == "ESX" then
+            ESX.ShowNotification('~r~Du har ikke adgang til dette.')
+        elseif Config.notify == "VRP" then
+            TriggerEvent("pNotify:SendNotification", {
+                text = "Du har ikke adgang til dette.",
+                type = "error",
+                timeout = 3000,
+                layout = "centerLeft"
+            })
+        elseif Config.notify == "QBCORE" then
+            QBCore.Functions.Notify("Du har ikke adgang til dette.", "error")
+        elseif Config.notify == "CUSTOM" then
+            Custom.noacces()            
         end
     end
 end)
