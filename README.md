@@ -4,7 +4,7 @@
 
 **Stanard Emote menuer:** RPEMOTES, DPEMOTES, QBCORE
 
-**Standard Notifikationer:** OX, ESX, VRP, QBCORE
+**Standard Notifikationer:** OX, VRP, ESX, QBCORE
 
 *Kan ændres til egne systemer i custom.lua*
 
