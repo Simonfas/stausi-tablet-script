@@ -3,7 +3,8 @@ Config = {}
 Config.framework = "VRP" -- Skift mellem ["VRP" eller "ESX" eller "QBCORE"]
 
 -- Sæt de 2 streger foran '@ox_lib/init.lua' i fxmanifest.lua, hvis du IKKE bruger ox_lib --
-Config.notify = "OX" -- ["OX", "VRP", "ESX", "QBCORE", "CUSTOM"] 
+Config.notify = "OX" -- ["OX", "VRP", "ESX", "QBCORE", "CUSTOM"]
+Config.emotescript = "RPEMOTES" -- ["RPEMOTES", "DPEMOTES", "QBCORE", "CUSTOM"]
 
 Config.politiurl = "http://localhost/police/pages/login.php" -- Politilogin URL
 Config.laegeurl = "http://localhost/ems/pages/login.php" -- Lægelogin URL
