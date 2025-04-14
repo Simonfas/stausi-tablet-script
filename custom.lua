@@ -1,3 +1,4 @@
+-- Notify
 function noacces()
     lib.notify({
         title = 'Adgang nægtet',
@@ -6,6 +7,18 @@ function noacces()
     })
 end
 
+-- Start Emote Kommando/Script
+function startemote()
+    ExecuteCommand("e tablet2")
+end
+
+-- Stop Emote Kommando/Script
+function stopemote()
+    ExecuteCommand("emotecancel")
+end
+
 return {
-    noacces = noacces
+    noacces = noacces,
+    startemote = startemote,
+    stopemote = stopemote
 }
