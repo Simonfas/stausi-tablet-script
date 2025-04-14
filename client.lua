@@ -21,7 +21,7 @@ Citizen.CreateThread(function()
     end
 end)
 
-if Config.framework == "ESX" then
+if Config.emotescript == "RPEMOTES" then
     function PlayTabletEmote()
         ExecuteCommand("e tablet2")
     end
@@ -29,13 +29,32 @@ if Config.framework == "ESX" then
     function StopTabletEmote()
         ExecuteCommand("emotecancel")
     end
-elseif Config.framework == "QBCORE" then
+
+elseif Config.emotescript == "QBCORE" then
     function PlayTabletEmote()
         TriggerEvent("animations:client:EmoteCommandStart", {"tablet2"})
     end
     
     function StopTabletEmote()
         TriggerEvent("animations:client:EmoteCommandStart", {"c"})
+    end
+
+elseif Config.emotescript == "DPEMOTES" then
+    function PlayTabletEmote()
+        ExecuteCommand("e tablet2")
+    end
+    
+    function StopTabletEmote()
+        ExecuteCommand("e c")
+    end
+
+elseif Config.emotescript == "CUSTOM" then
+    function PlayTabletEmote()
+        Custom.startemote()
+    end
+    
+    function StopTabletEmote()
+        Custom.stopemote()
     end
 end
 
