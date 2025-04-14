@@ -2,7 +2,7 @@ fx_version 'cerulean'
 games {'gta5'}
 author 'Simonfas'
 description 'Stausi Tablet Script'
-version '2.2'
+version '2.3'
 lua54 'yes'
 
 ui_page 'html/index.html'
