@@ -58,67 +58,133 @@ elseif Config.emotescript == "CUSTOM" then
     end
 end
 
-RegisterCommand(Config.politicommand, function()
-    if PlayerData.job and PlayerData.job.name == Config.politijob then
-        PlayTabletEmote()
-        SendNUIMessage({ action = "show", url = Config.politiurl })
-        SetNuiFocus(true, true)
-        nuiOpen = true
-        SendNUIMessage({ action = "updateLogos", logoUrl = Config.politilogo, selector = "img[src*='logo_stort.png']"})
-    else
-        if Config.notify == "OX" then
-            lib.notify({
-                title = 'Adgang nægtet',
-                description = 'Du har ikke adgang til dette.',
-                type = 'error'
-            })
-        elseif Config.notify == "ESX" then
-            ESX.ShowNotification('~r~Du har ikke adgang til dette.')
-        elseif Config.notify == "VRP" then
-            TriggerEvent("pNotify:SendNotification", {
-                text = "Du har ikke adgang til dette.",
-                type = "error",
-                timeout = 3000,
-                layout = "centerLeft"
-            })
-        elseif Config.notify == "QBCORE" then
-            QBCore.Functions.Notify("Du har ikke adgang til dette.", "error")
-        elseif Config.notify == "CUSTOM" then
-            Custom.noacces()            
+if Config.framework == "ESX" then
+    RegisterCommand(Config.politicommand, function()
+        if PlayerData.job and PlayerData.job.name == Config.politijob then
+            PlayTabletEmote()
+            SendNUIMessage({ action = "show", url = Config.politiurl })
+            SetNuiFocus(true, true)
+            nuiOpen = true
+            SendNUIMessage({ action = "updateLogos", logoUrl = Config.politilogo, selector = "img[src*='logo_stort.png']"})
+        else
+            if Config.notify == "OX" then
+                lib.notify({
+                    title = 'Adgang nægtet',
+                    description = 'Du har ikke adgang til dette.',
+                    type = 'error'
+                })
+            elseif Config.notify == "ESX" then
+                ESX.ShowNotification('~r~Du har ikke adgang til dette.')
+            elseif Config.notify == "VRP" then
+                TriggerEvent("pNotify:SendNotification", {
+                    text = "Du har ikke adgang til dette.",
+                    type = "error",
+                    timeout = 3000,
+                    layout = "centerLeft"
+                })
+            elseif Config.notify == "QBCORE" then
+                QBCore.Functions.Notify("Du har ikke adgang til dette.", "error")
+            elseif Config.notify == "CUSTOM" then
+                Custom.noacces()            
+            end
         end
-    end
-end)
+    end)
 
-RegisterCommand(Config.lagecommand, function()
-    if PlayerData.job and PlayerData.job.name == Config.laegejob then
-        PlayTabletEmote()
-        SendNUIMessage({ action = "show", url = Config.laegeurl })
-        SetNuiFocus(true, true)
-        nuiOpen = true
-        SendNUIMessage({ action = "updateLogos", logoUrl = Config.laegelogo, selector = "img[src*='logo_stort.png']"})
-    else
-        if Config.notify == "OX" then
-            lib.notify({
-                title = 'Adgang nægtet',
-                description = 'Du har ikke adgang til dette.',
-                type = 'error'
-            })
-        elseif Config.notify == "ESX" then
-            ESX.ShowNotification('~r~Du har ikke adgang til dette.')
-        elseif Config.notify == "VRP" then
-            TriggerEvent("pNotify:SendNotification", {
-                text = "Du har ikke adgang til dette.",
-                type = "error",
-                timeout = 3000,
-                layout = "centerLeft"
-            })
-        elseif Config.notify == "QBCORE" then
-            QBCore.Functions.Notify("Du har ikke adgang til dette.", "error")
-        elseif Config.notify == "CUSTOM" then
-            Custom.noacces()            
+    RegisterCommand(Config.lagecommand, function()
+        if PlayerData.job and PlayerData.job.name == Config.laegejob then
+            PlayTabletEmote()
+            SendNUIMessage({ action = "show", url = Config.laegeurl })
+            SetNuiFocus(true, true)
+            nuiOpen = true
+            SendNUIMessage({ action = "updateLogos", logoUrl = Config.laegelogo, selector = "img[src*='logo_stort.png']"})
+        else
+            if Config.notify == "OX" then
+                lib.notify({
+                    title = 'Adgang nægtet',
+                    description = 'Du har ikke adgang til dette.',
+                    type = 'error'
+                })
+            elseif Config.notify == "ESX" then
+                ESX.ShowNotification('~r~Du har ikke adgang til dette.')
+            elseif Config.notify == "VRP" then
+                TriggerEvent("pNotify:SendNotification", {
+                    text = "Du har ikke adgang til dette.",
+                    type = "error",
+                    timeout = 3000,
+                    layout = "centerLeft"
+                })
+            elseif Config.notify == "QBCORE" then
+                QBCore.Functions.Notify("Du har ikke adgang til dette.", "error")
+            elseif Config.notify == "CUSTOM" then
+                Custom.noacces()            
+            end
         end
-    end
-end)
+    end)
+end
+
+if Config.framework == "QBCORE" then
+    RegisterCommand(Config.politicommand, function()
+        if PlayerData.job and PlayerData.job.name == Config.politijob then
+            PlayTabletEmote()
+            SendNUIMessage({ action = "show", url = Config.politiurl })
+            SetNuiFocus(true, true)
+            nuiOpen = true
+            SendNUIMessage({ action = "updateLogos", logoUrl = Config.politilogo, selector = "img[src*='logo_stort.png']"})
+        else
+            if Config.notify == "OX" then
+                lib.notify({
+                    title = 'Adgang nægtet',
+                    description = 'Du har ikke adgang til dette.',
+                    type = 'error'
+                })
+            elseif Config.notify == "ESX" then
+                ESX.ShowNotification('~r~Du har ikke adgang til dette.')
+            elseif Config.notify == "VRP" then
+                TriggerEvent("pNotify:SendNotification", {
+                    text = "Du har ikke adgang til dette.",
+                    type = "error",
+                    timeout = 3000,
+                    layout = "centerLeft"
+                })
+            elseif Config.notify == "QBCORE" then
+                QBCore.Functions.Notify("Du har ikke adgang til dette.", "error")
+            elseif Config.notify == "CUSTOM" then
+                Custom.noacces()            
+            end
+        end
+    end)
+
+    RegisterCommand(Config.lagecommand, function()
+        if PlayerData.job and PlayerData.job.name == Config.laegejob then
+            PlayTabletEmote()
+            SendNUIMessage({ action = "show", url = Config.laegeurl })
+            SetNuiFocus(true, true)
+            nuiOpen = true
+            SendNUIMessage({ action = "updateLogos", logoUrl = Config.laegelogo, selector = "img[src*='logo_stort.png']"})
+        else
+            if Config.notify == "OX" then
+                lib.notify({
+                    title = 'Adgang nægtet',
+                    description = 'Du har ikke adgang til dette.',
+                    type = 'error'
+                })
+            elseif Config.notify == "ESX" then
+                ESX.ShowNotification('~r~Du har ikke adgang til dette.')
+            elseif Config.notify == "VRP" then
+                TriggerEvent("pNotify:SendNotification", {
+                    text = "Du har ikke adgang til dette.",
+                    type = "error",
+                    timeout = 3000,
+                    layout = "centerLeft"
+                })
+            elseif Config.notify == "QBCORE" then
+                QBCore.Functions.Notify("Du har ikke adgang til dette.", "error")
+            elseif Config.notify == "CUSTOM" then
+                Custom.noacces()            
+            end
+        end
+    end)
+end
 
 RegisterNUICallback('close', function()
     SetNuiFocus(false, false)
